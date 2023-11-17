@@ -16,10 +16,18 @@ const styles = StyleSheet.create({
         padding : 10,
         width  : '100%',
         borderWidth : 1,
-        marginBottom : "10%",
         borderRadius : 10,
         backgroundColor : "#F7F8F9",
         borderColor : '#DADADA',
+    },
+    inputError : {
+        borderColor : 'crimson'
+    },
+    errorTxt : {
+        color : 'crimson',
+        fontWeight : "bold",
+        paddingTop : '3%',
+        paddingBottom : '3%'
     },
     registerBtn : {
         backgroundColor : 'black',
@@ -28,7 +36,7 @@ const styles = StyleSheet.create({
         paddingTop : '4%',
         paddingBottom : '4%',
         borderRadius : 10,
-        marginBottom : "10%",
+        marginBottom : "5%",
     },
     registerBtnTxt : {
         color : 'white',
@@ -39,7 +47,8 @@ const styles = StyleSheet.create({
         fontSize : 17,
         marginLeft : '24%',
         color  : "#1E8EF6",
-        textDecorationLine : 'underline'
+        textDecorationLine : 'underline',
+        marginBottom : '5%'
     },
 })
 

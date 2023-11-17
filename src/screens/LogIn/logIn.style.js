@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         padding : 15,
         width  : '100%',
         borderWidth : 1,
-        marginBottom : "15%",
+        marginBottom : "3%",
         borderRadius : 10,
         backgroundColor : "#F7F8F9",
         borderColor : '#DADADA',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         paddingTop : '4%',
         paddingBottom : '4%',
         borderRadius : 10,
-        marginBottom : "10%",
+        marginBottom : "5%",
         marginTop : '3%'
     },
 
@@ -47,7 +47,17 @@ const styles = StyleSheet.create({
         paddingBottom : '4%',
         borderRadius : 10,
         borderWidth : 2,
-        marginBottom : "10%"
+        marginTop : '5%',
+    },
+
+    inputError : {
+        borderColor : 'crimson'
+    },
+
+    errorTxt : {
+        color : 'crimson',
+        fontWeight : "bold",
+        paddingBottom : '8%'
     },
 
     registerBtnTxt : {
@@ -57,8 +67,10 @@ const styles = StyleSheet.create({
     guestBtn : {
         fontSize : 17,
         marginLeft : '28%',
+        marginTop : '10%',
         color  : "#1E8EF6",
-        textDecorationLine : 'underline'
+        textDecorationLine : 'underline',
+        marginBottom : "5%",
     }
 })
 
