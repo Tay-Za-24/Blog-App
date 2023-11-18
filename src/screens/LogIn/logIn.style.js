@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     mainContainer : {
-        paddingTop : "28%",
+        paddingTop : "5%",
         paddingLeft : "8%",
         paddingRight : "8%",
         justifyContent: 'center',

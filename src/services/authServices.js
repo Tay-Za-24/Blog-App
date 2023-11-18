@@ -18,6 +18,5 @@ export default class authService {
           'Content-Type': 'application/json',
         },
       })
-    }
-    
+    }   
 }
