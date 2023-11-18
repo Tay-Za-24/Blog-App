@@ -5,9 +5,9 @@ import { Formik } from 'formik';
 import authService from '../../services/authServices';
 import { AuthContext } from '../../hooks/context/context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as yup from 'yup';
 import { useState } from 'react';
-import Ionicons from 'react-native-ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { formSchema } from './logInFormhandle';
 
 
 const LogIn = ({navigation}) => {
@@ -30,20 +30,8 @@ const LogIn = ({navigation}) => {
     setTimeout(() => {
       setRegisterLoading(false); 
       navigateToRegister();
-    }, 1000);
+    }, 500);
   };
-
-  const formSchema = yup.object({
-    email: yup.string()
-    .required()
-    .min(10, 'Email must be at least 10 characters')
-    .max(24, 'Email must be at most 24 characters'),
-    //email validate
-    password: yup.string()
-    .required()
-    .min(8, 'Password must be at least 8 characters'),
-    //password validate
-  })
 
   const FormSubmit = async (values, actions) => {
     try {
@@ -60,6 +48,7 @@ const LogIn = ({navigation}) => {
       setLoading(false); 
     }
   };
+
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
@@ -92,9 +81,14 @@ const LogIn = ({navigation}) => {
                   value={formikprops.values.password}
                   secureTextEntry={passwordVisibility}
                 />
-                <TouchableOpacity onPress={setPasswordVisibility(true)}> 
-                  <Ionicons name='eye-outline' size={20}/>
-                </TouchableOpacity> 
+                {formikprops.values.password.length > 0 && (
+                  <TouchableOpacity
+                    style={{ position: 'absolute', right: '5%', top: '20%' }}
+                    onPress={() => setPasswordVisibility(!passwordVisibility)}
+                  >
+                    <Ionicons name={passwordVisibility ? 'eye-outline' : 'eye-off-outline'} size={30} />
+                  </TouchableOpacity>
+                )}
               </View>
               <Text style={styles.errorTxt}>{formikprops.touched.password && formikprops.errors.password}</Text>
               {/* password input */}
