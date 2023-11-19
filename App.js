@@ -3,6 +3,7 @@ import { AuthProvider } from './src/hooks/provider/authProvider';
 import useCheckUser from './src/hooks/custom/useCheckUser'
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const authState = useCheckUser();
@@ -16,6 +17,9 @@ export default function App() {
 
   return (
     <AuthProvider authState={authState}>
+       <StatusBar
+        translucent={true}
+      />
       <Navigation />
     </AuthProvider>
   );

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import postService from '../services/postServices';
 import styles from '../screens/Home/home.style';
 import moment from 'moment';
-import { getRandomSampleImage } from '../util/getRandomImage';
+import { getRandomSampleImage } from '../util/helper';
 
 const PostList = ({navigation}) => {
   const [postList, setPostList] = useState([]);
@@ -49,6 +49,7 @@ const PostList = ({navigation}) => {
         <ActivityIndicator size="large" color="#000000" style={styles.loadingIndicator} />
       ) : (
         <FlatList
+        showsVerticalScrollIndicator = {false}
         data={postList}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (

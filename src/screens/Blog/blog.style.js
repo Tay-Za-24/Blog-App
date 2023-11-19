@@ -2,9 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     image : {
-        marginTop : "10%",
         width : "100%",
-        height : "80%",
+        height : "83%",
     },
     blogTtl : {
         fontWeight : '600',

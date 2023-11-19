@@ -29,7 +29,7 @@ const Home = ({navigation}) => {
   return (
       <View style={styles.mainContainer} >
         <View style={{flexDirection : 'row', marginBottom : '7%' , marginTop : "15%"}}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={navigateToLogIn}>
             <Ionicons name='menu-outline' size={35}/>
           </TouchableOpacity>
           <TouchableOpacity style={styles.profile}>

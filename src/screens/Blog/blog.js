@@ -1,7 +1,7 @@
 import { View, Text,Image } from 'react-native'
 import React from 'react'
 import styles from './blog.style';
-import { getRandomSampleImage } from '../../util/getRandomImage';
+import { getRandomSampleImage } from '../../util/helper';
 
 const Blog = ({route}) => {
   const {post} = route.params;

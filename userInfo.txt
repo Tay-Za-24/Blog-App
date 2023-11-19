@@ -1,1 +1,0 @@
-{"email": "taezane2@gmail.com", "name": "User1", "password": "taezane@123", "password_confirmation": "taezane@123", "phone": "0912345678"}
