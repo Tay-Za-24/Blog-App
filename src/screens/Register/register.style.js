@@ -2,14 +2,17 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     mainContainer : {
-        paddingTop : "20%",
+        paddingTop : "25%",
         paddingLeft : "5%",
         paddingRight : "5%",
+        backgroundColor : "#f7ede2",
+        paddingBottom : "20%"
     },
     intro : {
         fontSize : 26,
         marginBottom : "10%",
         fontWeight : '600',
+        color : "#84a59d"
     },  
     input : {
         height : 'auto',
@@ -21,16 +24,16 @@ const styles = StyleSheet.create({
         borderColor : '#DADADA',
     },
     inputError : {
-        borderColor : 'crimson'
+        borderColor : '#fa6d6d'
     },
     errorTxt : {
-        color : 'crimson',
+        color : '#fa6d6d',
         fontWeight : "bold",
         paddingTop : '3%',
         paddingBottom : '3%'
     },
     registerBtn : {
-        backgroundColor : 'black',
+        backgroundColor : '#84a59d',
         alignItems : "center",
         width : '100%',
         paddingTop : '4%',

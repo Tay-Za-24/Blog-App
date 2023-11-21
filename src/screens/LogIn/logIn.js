@@ -1,5 +1,5 @@
 import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView, ActivityIndicator } from 'react-native'
-import React, { useContext } from 'react';
+import React, { useContext, } from 'react';
 import styles from './logIn.style';
 import { Formik } from 'formik';
 import authService from '../../services/authServices';
@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { formSchema } from './logInFormhandle';
-
+import Animated, {BounceInUp, Easing, SlideInLeft } from 'react-native-reanimated';
 
 const LogIn = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -51,8 +51,8 @@ const LogIn = ({navigation}) => {
 
   return (
     <View style={styles.mainContainer}>
-      <ScrollView>
-        <Text style={styles.intro}>Welcome From Our Blog App. Feel Free To Post Your Feelings With Us 🖤</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.intro}>Welcome From Our Blog App. Feel Free To Post Your Feelings With Us 🤍</Text>
 
         <Formik
           initialValues={{
@@ -64,53 +64,61 @@ const LogIn = ({navigation}) => {
         >
           {(formikprops) => (
             <View>
-              <TextInput 
-              style={[styles.input, formikprops.touched.email && formikprops.errors.email ? styles.inputError : null]}
-              placeholder='Enter your Email'
-              onChangeText={formikprops.handleChange('email')}
-              value={formikprops.values.email}  
-              />
-              <Text style={styles.errorTxt}>{formikprops.touched.email && formikprops.errors.email}</Text>
-              {/* emai input */}
-            
-              <View style={{flexDirection : 'row'}}>
+              <Animated.View entering={SlideInLeft.duration(400).easing(Easing.ease)}>
                 <TextInput 
-                  style={[styles.input, formikprops.touched.password && formikprops.errors.password ? styles.inputError : null]}
-                  placeholder='Enter your Password'
-                  onChangeText={formikprops.handleChange('password')}
-                  value={formikprops.values.password}
-                  secureTextEntry={passwordVisibility}
+                style={[styles.input, formikprops.touched.email && formikprops.errors.email ? styles.inputError : null]}
+                placeholder='Enter your Email'
+                onChangeText={formikprops.handleChange('email')}
+                value={formikprops.values.email}  
                 />
-                {formikprops.values.password.length > 0 && (
-                  <TouchableOpacity
-                    style={{ position: 'absolute', right: '5%', top: '20%' }}
-                    onPress={() => setPasswordVisibility(!passwordVisibility)}
-                  >
-                    <Ionicons name={passwordVisibility ? 'eye-outline' : 'eye-off-outline'} size={30} />
-                  </TouchableOpacity>
-                )}
-              </View>
-              <Text style={styles.errorTxt}>{formikprops.touched.password && formikprops.errors.password}</Text>
-              {/* password input */}
+                <Text style={styles.errorTxt}>{formikprops.touched.email && formikprops.errors.email}</Text>
+                {/* emai input */}
+              </Animated.View>
+
+              <Animated.View entering={SlideInLeft.duration(650).easing(Easing.ease)}>
+                <View style={{flexDirection : 'row'}}>
+                  <TextInput 
+                    style={[styles.input, formikprops.touched.password && formikprops.errors.password ? styles.inputError : null]}
+                    placeholder='Enter your Password'
+                    onChangeText={formikprops.handleChange('password')}
+                    value={formikprops.values.password}
+                    secureTextEntry={passwordVisibility}
+                  />
+                  {formikprops.values.password.length > 0 && (
+                    <TouchableOpacity
+                      style={{ position: 'absolute', right: '5%', top: '20%' }}
+                      onPress={() => setPasswordVisibility(!passwordVisibility)}
+                    >
+                      <Ionicons name={passwordVisibility ? 'eye-outline' : 'eye-off-outline'} size={30} />
+                    </TouchableOpacity>
+                  )}
+                </View>
+                <Text style={styles.errorTxt}>{formikprops.touched.password && formikprops.errors.password}</Text>
+                {/* password input */}
+              </Animated.View>
 
               {loading ? (
-                <ActivityIndicator size="large" color="#000000" />
+                <ActivityIndicator size="large" color="#84a59d" />
               ) : (
-                <TouchableOpacity style={styles.logInBtn} onPress={formikprops.handleSubmit}>
-                  <Text style={styles.logInBtnTxt}>Log In</Text>
-                </TouchableOpacity>
+                <Animated.View entering={BounceInUp.delay(900)}>
+                  <TouchableOpacity style={styles.logInBtn} onPress={formikprops.handleSubmit}>
+                  <Text style={styles.logInBtnTxt}>Login</Text>
+                  </TouchableOpacity>
+                </Animated.View>
               )}
 
               {registerLoading ? (
-                <ActivityIndicator size="large" color="#000000" />
+                <ActivityIndicator size="large" color="#84a59d" />
               ) : (
-                <TouchableOpacity style={styles.registerBtn} onPress={handleRegisterPress}>
+                <Animated.View entering={BounceInUp.delay(700)}>
+                  <TouchableOpacity style={styles.registerBtn} onPress={handleRegisterPress}>
                   <Text style={styles.registerBtnTxt}>Register</Text>
-                </TouchableOpacity>
+                  </TouchableOpacity>
+                </Animated.View>
               )}
 
               <TouchableOpacity onPress={navigateToHome}>
-                <Text style={styles.guestBtn}>Continue as guest</Text>
+                <Text style={styles.guestBtn}>Continue as a guest</Text>
               </TouchableOpacity>
 
             </View>

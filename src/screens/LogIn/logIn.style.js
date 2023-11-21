@@ -2,15 +2,19 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     mainContainer : {
+        height : "100%",
         paddingTop : "25%",
         paddingLeft : "8%",
         paddingRight : "8%",
+        paddingBottom : "30%",
         justifyContent: 'center',
+        backgroundColor : "#f7ede2"
     },
     intro : {
         fontSize : 26,
         marginBottom : "16%",
         fontWeight : '600',
+        color : "#84a59d",
     },
     
     input : {
@@ -25,7 +29,7 @@ const styles = StyleSheet.create({
     },
 
     logInBtn : {
-        backgroundColor : 'black',
+        backgroundColor : '#84a59d',
         alignItems : "center",
         width : '100%',
         paddingTop : '4%',
@@ -48,25 +52,27 @@ const styles = StyleSheet.create({
         borderRadius : 10,
         borderWidth : 2,
         marginTop : '5%',
+        borderColor :"#84a59d",
     },
 
     inputError : {
-        borderColor : 'crimson'
+        borderColor : '#fa6d6d'
     },
 
     errorTxt : {
-        color : 'crimson',
+        color : '#fa6d6d',
         fontWeight : "bold",
         paddingBottom : '8%'
     },
 
     registerBtnTxt : {
         fontSize : 20,
+        color : '#84a59d'
     },
 
     guestBtn : {
         fontSize : 17,
-        marginLeft : '28%',
+        marginLeft : '27%',
         marginTop : '10%',
         color  : "#1E8EF6",
         textDecorationLine : 'underline',

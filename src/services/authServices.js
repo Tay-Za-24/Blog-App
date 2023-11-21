@@ -1,17 +1,21 @@
 import axios from "axios";
-import {apiUrl} from '../util/constant/constant'
-import { defaultApiConfig } from "../util/helper";
+import { apiUrl } from '../util/constant/constant';
+import { setConfig } from "../util/helper";
 
 export default class authService {
     static createUser = (userData) => {
         console.log('User data:', userData);
-        return axios.post(apiUrl + 'users' , userData,defaultApiConfig())
+        setConfig(); 
+        return axios.post(apiUrl + 'users', userData);
     };
+
     static logInUser = (email, password) => {
-      return axios.post(apiUrl + 'auth/login', {email, password}, defaultApiConfig())
+        setConfig(); 
+        return axios.post(apiUrl + 'auth/login', { email, password });
     }
-    
+
     static checkUserTokenValid = (token) => {
-      return axios.get(apiUrl + 'auth/me', defaultApiConfig(token))
+        setConfig(token); 
+        return axios.get(apiUrl + 'auth/me');
     }
 }
