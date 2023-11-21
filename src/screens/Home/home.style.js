@@ -47,11 +47,13 @@ const styles = StyleSheet.create({
     tab : {
         fontSize : 23,
         opacity : 0.3,
-        fontWeight : "bold"
+        fontWeight : "bold",
+        color : "#3d405b"
     },
 
     activeTab : {
-        opacity : 1
+        opacity : 1,
+        color : "#3d405b"
     },  
 
     loadingIndicator : {
@@ -88,7 +90,18 @@ const styles = StyleSheet.create({
         marginTop : '40%',
         marginLeft : '15%',
         opacity : 0.6
-    }
+    }, 
+
+    userInfo : {
+        height: "100%",
+        paddingTop : "50%",
+        alignItems : 'center',
+        backgroundColor : '#00000050'
+    },
+
+    infoBox : {
+        backgroundColor : "white"
+    },
 })  
 
 export default styles;

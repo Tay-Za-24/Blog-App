@@ -1,17 +1,19 @@
-import { View, Text, Button, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
+import { View, Text, Button, TextInput, TouchableOpacity, Modal } from 'react-native'
 import React from 'react'
 import styles from './home.style'
 import { useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import PostList from '../../component/postList';
+import authService from '../../services/authServices';
 
 
 const Home = ({navigation}) => {
   const [text, setText] = useState('');
   const [activeTab, setActiveTab] = useState('Featured');
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const navigateToLogIn = () =>{
-    navigation.navigate('Log In');
+    navigation.navigate("AuthStack");
   }
 
   const handleSearch = (newText) => {
@@ -32,7 +34,7 @@ const Home = ({navigation}) => {
           <TouchableOpacity onPress={navigateToLogIn}>
             <Ionicons name='menu-outline' size={35}/>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.profile}>
+          <TouchableOpacity style={styles.profile} onPress={() => setModalVisible(true)}>
             <Ionicons name='person-circle-outline' size={35}/>
           </TouchableOpacity>
         </View>
@@ -69,7 +71,18 @@ const Home = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <PostList navigation={navigation} />
+        <PostList navigation={navigation} searchText={text}/> 
+
+        <Modal visible={isModalVisible} transparent>
+            <View style={styles.userInfo}>
+              <View style={styles.infoBox}>
+                <TouchableOpacity onPress={() => setModalVisible(false)} >
+                  <Ionicons name='close-outline' size={30}/>
+                </TouchableOpacity>
+                <Text>Under Construction</Text>
+              </View>
+            </View>
+        </Modal>
       </View>
   )
 }

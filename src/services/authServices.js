@@ -13,7 +13,7 @@ export default class authService {
         setConfig(); 
         return axios.post(apiUrl + 'auth/login', { email, password });
     }
-
+    
     static checkUserTokenValid = (token) => {
         setConfig(token); 
         return axios.get(apiUrl + 'auth/me');

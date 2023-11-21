@@ -3,7 +3,7 @@ import { Easing } from "react-native-reanimated"
 export const config = {
     animation : 'spring',
     config : {
-        stiffness : 1000,
+        stiffness : 800,
         damping : 500,
         mass : 3,
         overshootClamping : false,

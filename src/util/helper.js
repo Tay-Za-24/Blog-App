@@ -24,10 +24,6 @@ export const defaultApiConfig = (token = "") => {
 
 export const setConfig = (token) => {
   axios.defaults.baseURL = 'https://ojt-api.bib-apps.com/api/';
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-  } else {
-    delete axios.defaults.headers.common['Authorization'];
-  }
+  axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
   axios.defaults.headers.post['Content-Type'] = 'application/json';
 };

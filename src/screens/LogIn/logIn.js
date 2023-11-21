@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { formSchema } from './logInFormhandle';
-import Animated, {BounceInUp, Easing, SlideInLeft } from 'react-native-reanimated';
+import Animated, {BounceInUp, Easing, SlideInLeft, LightSpeedInLeft } from 'react-native-reanimated';
 
 const LogIn = ({navigation}) => {
   const [loading, setLoading] = useState(false);
@@ -22,7 +22,7 @@ const LogIn = ({navigation}) => {
   }
 
   const navigateToHome = () => {
-    navigation.navigate('Home')
+    navigation.navigate("InsideStack")
   }
 
   const handleRegisterPress = () => {
@@ -64,7 +64,7 @@ const LogIn = ({navigation}) => {
         >
           {(formikprops) => (
             <View>
-              <Animated.View entering={SlideInLeft.duration(400).easing(Easing.ease)}>
+              <Animated.View entering={LightSpeedInLeft.duration(400).easing(Easing.ease)}>
                 <TextInput 
                 style={[styles.input, formikprops.touched.email && formikprops.errors.email ? styles.inputError : null]}
                 placeholder='Enter your Email'
@@ -75,7 +75,7 @@ const LogIn = ({navigation}) => {
                 {/* emai input */}
               </Animated.View>
 
-              <Animated.View entering={SlideInLeft.duration(650).easing(Easing.ease)}>
+              <Animated.View entering={LightSpeedInLeft.duration(650).easing(Easing.ease)}>
                 <View style={{flexDirection : 'row'}}>
                   <TextInput 
                     style={[styles.input, formikprops.touched.password && formikprops.errors.password ? styles.inputError : null]}

@@ -9,6 +9,7 @@ import Animated, {
     Easing,
     FadeInUp,
     BounceInDown,
+    BounceInUp
   } from 'react-native-reanimated';
 
 const Register = ({navigation}) => {
@@ -17,7 +18,7 @@ const Register = ({navigation}) => {
     const [passwordConfirmVisibility, setPasswordConfirmVisibility] = useState(true);
 
     const navigateToLogIn = () =>{
-        navigation.navigate('Log In');
+        navigation.navigate('Login');
     }
 
     const bounceAnimation = () => {
@@ -124,7 +125,7 @@ const Register = ({navigation}) => {
                             {loading ? (
                                 <ActivityIndicator size="large" color="#84a59d" />
                             ) : (
-                                <Animated.View entering={ BounceInDown.delay(700).easing(Easing.ease)} >
+                                <Animated.View entering={ BounceInUp.delay(700).easing(Easing.ease)} >
                                     <TouchableOpacity style={[styles.registerBtn]} onPress={formikprops.handleSubmit}>
                                         <Text style={styles.registerBtnTxt}>Register</Text>
                                     </TouchableOpacity>
