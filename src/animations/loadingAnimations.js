@@ -1,11 +1,9 @@
-// LoadingAnimation.js
-
 import { View, Text, Dimensions } from 'react-native';
 import React from 'react';
 import Svg, { Circle } from 'react-native-svg';
 import Animated, { useAnimatedProps, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useEffect } from 'react';
-import styles from './animationStyle';
+import styles from '../animations/animationStyle';
 import { ReText } from 'react-native-redash';
 
 const { width, height } = Dimensions.get('window');

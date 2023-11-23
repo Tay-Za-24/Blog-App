@@ -9,12 +9,13 @@ const styles = StyleSheet.create({
     circleContainer: {
         position: 'absolute',
         bottom : "32%",
-        right : "9%"
+        right : "9%",
+        zIndex : 99,
     },
     textInsideCircle: {
-        position: 'absolute',
+        position: 'relative',
         fontSize : 20,
-        bottom : "55%",
+        bottom : "8%",
     },
 });
 

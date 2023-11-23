@@ -4,7 +4,7 @@ import postService from '../services/postServices';
 import styles from '../screens/Home/home.style';
 import moment from 'moment';
 import { getRandomSampleImage } from '../util/helper';
-import LoadingAnimation from './loadingAnimations';
+import LoadingAnimation from '../animations/loadingAnimations';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 const PostList = ({ navigation, searchText }) => {
@@ -38,7 +38,6 @@ const PostList = ({ navigation, searchText }) => {
 
   const fetchPosts = () => {
     setLoadingComplete(false);
-    const delay = 2000;
 
     setTimeout(() => {
       postService
@@ -49,14 +48,12 @@ const PostList = ({ navigation, searchText }) => {
           );
   
           setPostList(sortedPosts);
+          setLoadingComplete(true); 
         })
         .catch((error) => {
           console.log(error);
-        })
-        .finally(() => {
-          setLoadingComplete(true);
         });
-    }, delay);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -77,7 +74,7 @@ const PostList = ({ navigation, searchText }) => {
   };
 
   const renderEmptyComponent = () => (
-    <View style={{alignItems : 'center'}}>
+    <View style={{ alignItems: 'center' }}>
       <Text>Nothing Found</Text>
     </View>
   );
@@ -96,10 +93,7 @@ const PostList = ({ navigation, searchText }) => {
               <View style={styles.post}>
                 <View>
                   {item.image ? (
-                    <Image
-                      style={styles.image}
-                      source={{ uri: item.image }}
-                    />
+                    <Image style={styles.image} source={{ uri: item.image }} />
                   ) : (
                     <Image
                       style={styles.image}
@@ -111,8 +105,8 @@ const PostList = ({ navigation, searchText }) => {
                   <Text style={styles.postTtl}>
                     {truncateText(item.title, 20)}
                   </Text>
-                  <Text style={styles.postBody}>{truncateText(item.body, 200)}</Text>
-                  <View style={{ flexDirection: 'row' }}>
+                  <Text style={styles.postBody}>{item.body}</Text>
+                  <View style={{ flexDirection: 'row', marginTop : "5%" }}>
                     <Text style={styles.postDate}>
                       {formatCreatedAt(item.created_at)}
                     </Text>

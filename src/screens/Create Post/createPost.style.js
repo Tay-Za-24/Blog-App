@@ -30,8 +30,7 @@ const styles = StyleSheet.create({
         borderWidth : 1,
         borderRadius : 10,
         backgroundColor : "#edede9",
-        borderColor : '#d6ccc2',
-        marginBottom : "7%"
+        borderColor : '#d6ccc2'
     },
 
     bodyInput : {
@@ -39,9 +38,9 @@ const styles = StyleSheet.create({
         borderColor : '#d6ccc2',
         borderWidth : 1,
         borderRadius : 10,
-        marginTop : "2%",
         padding : 10,
-        textAlignVertical: 'top'
+        textAlignVertical: 'top',
+        marginTop : "2%"
     }, 
 
     createBtn : {
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
         width : "35%",
         height : "23%",
         borderRadius : 25,
-        marginTop : "10%",
+        marginTop : "3%",
         flexDirection : "row",
         marginLeft : "30%",
         marginBottom : "5%"
@@ -64,7 +63,33 @@ const styles = StyleSheet.create({
     createIcon : {
         marginLeft : "10%",
         marginTop : "7%"
+    }, 
+    modal : {
+        height: "100%",
+        paddingTop : "70%",
+        alignItems : 'center',
+        backgroundColor : '#00000050'
+    }, 
+    box : {
+        width : '80%',
+        height : "30%",
+        backgroundColor : "white",
+        padding : 30,
+        borderRadius : 20,
+        zIndex : 2,
+    },
+    btn : {
+        marginTop : "10%",
+        backgroundColor : 'grey',
+        padding : 10,
+        borderRadius : 20,
+        width : " 40%",
+    },
+    innerBox: {
+        justifyContent : "center",
+        alignItems : "center"
     }
+
 })
 
 export default styles

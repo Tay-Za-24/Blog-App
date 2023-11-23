@@ -72,7 +72,7 @@ const LogIn = ({navigation}) => {
                 value={formikprops.values.email}  
                 />
                 <Text style={styles.errorTxt}>{formikprops.touched.email && formikprops.errors.email}</Text>
-                {/* emai input */}
+                {/* email input */}
               </Animated.View>
 
               <Animated.View entering={LightSpeedInLeft.duration(650).easing(Easing.ease)}>

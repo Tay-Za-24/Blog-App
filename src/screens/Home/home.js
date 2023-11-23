@@ -5,8 +5,8 @@ import { useState } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import PostList from '../../component/postList';
 import authService from '../../services/authServices';
-import Animated from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import moment from 'moment';
 
 
 const Home = ({navigation}) => {
@@ -39,6 +39,11 @@ const Home = ({navigation}) => {
     setActiveTab(tab);
   };
 
+  const formatCreatedAt = (timestamp) => {
+    const createdDate = moment(timestamp);
+    return createdDate.format('MMMM D, HH:mm:ss');
+  };
+
   const getUser = async () => {
     try {
       const userInfo = await AsyncStorage.getItem('userInfo').then((res) => JSON.parse(res));
@@ -53,11 +58,11 @@ const Home = ({navigation}) => {
   return (
       <View style={styles.mainContainer} >
         <View style={{flexDirection : 'row', marginBottom : '7%' , marginTop : "15%"}}>
-          <TouchableOpacity onPress={toggleDrawer}>
-            <Ionicons name='menu-outline' size={35}/>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.profile} onPress={() => setModalVisible(true)}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <Ionicons name='person-circle-outline' size={35}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menu} onPress={toggleDrawer}>
+            <Ionicons name='menu-outline' size={35}/>
           </TouchableOpacity>
         </View>
         <View style={{flexDirection : 'row'}}>
@@ -113,7 +118,8 @@ const Home = ({navigation}) => {
                     <Text style={styles. emailNotVerified}>( Not Verified )</Text>
                   )}
                 </View>
-                <Text style={{fontSize : 16}}>Phone Number : {userData.phone}</Text>
+                <Text style={styles.modalTxt}>Phone Number : {userData.phone}</Text>
+                <Text style={{fontSize : 16}}>Account created at {formatCreatedAt(userData.created_at)}</Text>
               </>
             )}
             <View style={styles.btnContain}>

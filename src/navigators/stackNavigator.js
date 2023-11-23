@@ -14,7 +14,9 @@ const Stack = createStackNavigator();
 const DrawerNavigator = createDrawerNavigator()
 
 const DrawerScreens = () => (
-  <DrawerNavigator.Navigator screenOptions={{headerShown: false}}>
+  <DrawerNavigator.Navigator
+    screenOptions={{ drawerPosition:'right',headerShown:false}}
+  >
     <DrawerNavigator.Screen name="Home" component={InsideStack} />
     <DrawerNavigator.Screen name="Create Post" component={CreatePost} />
   </DrawerNavigator.Navigator>

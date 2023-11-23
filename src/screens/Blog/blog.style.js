@@ -3,12 +3,13 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     image : {
         width : "100%",
-        height : "80%",
+        maxHeight : "70%",
         zIndex : 1,
     },
     blogTtl : {
         fontWeight : '600',
         fontSize : 20,
+        marginBottom : "5%"
     }, 
     desc : {
         paddingLeft : '8%',

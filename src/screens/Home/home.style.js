@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    profile : {
+    menu : {
         position : "absolute",
         right : 0
     },
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius : 10,
     },
     desc : {
+        width : "50%",
         paddingLeft : '8%',
         paddingTop : "3%",
         paddingRight : '5%',
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     postTtl : {
         fontWeight : '600',
         fontSize : 20,
-        marginBottom : "3%"
+        marginBottom : "3%",
     }, 
 
     postDate : {
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     }, 
 
     postBody : {
-        height : "57%"
+        height : "37%"
     },
     
     readTime : {
