@@ -18,4 +18,9 @@ export default class authService {
         setConfig(token); 
         return axios.get(apiUrl + 'auth/me');
     }
+
+    static getUserInfo = (accessToken) => {
+        setConfig(accessToken);
+        return axios.get(apiUrl + 'auth/me')
+    }
 }

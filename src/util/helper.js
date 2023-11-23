@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export const getRandomSampleImage = (item) => {
     const sampleImages = [
-        require('../../assets/sampleImages/lily.png'),
         require('../../assets/sampleImages/berserk.png'),
+        require('../../assets/sampleImages/lily.png'),
         require('../../assets/sampleImages/sample.png'),
         require('../../assets/sampleImages/sample2.png'),
         require('../../assets/sampleImages/Tulip.jpg'),

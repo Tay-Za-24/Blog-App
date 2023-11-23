@@ -65,6 +65,8 @@ const styles = StyleSheet.create({
         height : 150,
         marginBottom : '8%',
         flexDirection : 'row',
+        backgroundColor: "#edede9",
+        borderRadius : 20
     },
 
     image : {
@@ -81,13 +83,18 @@ const styles = StyleSheet.create({
     postTtl : {
         fontWeight : '600',
         fontSize : 20,
+        marginBottom : "3%"
     }, 
+
     postDate : {
-        marginTop : '40%',
         opacity : 0.6
     }, 
+
+    postBody : {
+        height : "57%"
+    },
+    
     readTime : {
-        marginTop : '40%',
         marginLeft : '15%',
         opacity : 0.6
     }, 
@@ -100,8 +107,51 @@ const styles = StyleSheet.create({
     },
 
     infoBox : {
-        backgroundColor : "white"
+        backgroundColor : "white",
+        padding : 10,
+        borderRadius : 20
     },
+
+    btnContain : {
+        flexDirection : "row", 
+        marginTop : "8%",
+        marginLeft : "18%",
+        marginBottom : "3%"
+    },  
+
+    logOutBtn : {
+        backgroundColor : 'black',
+        padding : 10,
+        paddingLeft : 15,
+        paddingRight : 15,
+        borderRadius : 20
+    }, 
+    btnNothing : {
+        backgroundColor : 'black',
+        padding : 10,
+        paddingLeft : 15,
+        paddingRight : 15,
+        borderRadius : 20,
+        marginLeft : "10%",
+        width : "30%",
+        alignItems : "center"
+    },
+
+    modalTxt : {
+        marginBottom : "3%",
+        fontSize : 16
+    }, 
+
+    emailCheck : {
+        fontSize : 16,
+        color  : "green"
+    },
+
+    emailNotVerified : {
+        fontSize : 16,
+        color : 'crimson'
+    }   
+
 })  
 
 export default styles;

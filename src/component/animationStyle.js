@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     textInsideCircle: {
         position: 'absolute',
         fontSize : 20,
-        bottom : "55%"
+        bottom : "55%",
     },
 });
 

@@ -25,10 +25,10 @@ export default () => {
     const checkAuthTokenValid = async (userInfo) => {
         try {
             await authService.checkUserTokenValid(userInfo.access_token);
-            setConfig(userInfo.access_token); // Set the token globally
+            setConfig(userInfo.access_token); 
             updateAppState(userInfo, true);
         } catch (error) {
-            setConfig(); // Remove the token globally
+            setConfig(); 
             updateAppState({}, false);
         }
     }

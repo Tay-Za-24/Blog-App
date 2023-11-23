@@ -44,7 +44,11 @@ const PostList = ({ navigation, searchText }) => {
       postService
         .getAllPosts()
         .then((response) => {
-          setPostList(response.data);
+          const sortedPosts = response.data.sort(
+            (a, b) => new Date(b.created_at) - new Date(a.created_at)
+          );
+  
+          setPostList(sortedPosts);
         })
         .catch((error) => {
           console.log(error);
@@ -107,7 +111,7 @@ const PostList = ({ navigation, searchText }) => {
                   <Text style={styles.postTtl}>
                     {truncateText(item.title, 20)}
                   </Text>
-                  <Text>{item.body}</Text>
+                  <Text style={styles.postBody}>{truncateText(item.body, 200)}</Text>
                   <View style={{ flexDirection: 'row' }}>
                     <Text style={styles.postDate}>
                       {formatCreatedAt(item.created_at)}

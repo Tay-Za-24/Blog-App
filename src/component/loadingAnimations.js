@@ -46,7 +46,7 @@ const LoadingAnimation = () => {
                     cx={width / 2}
                     cy={height / 2}
                     r={radius}
-                    stroke={'#a8dadc'}
+                    stroke={'#73ba9b'}
                     strokeWidth={8}
                     strokeDasharray={circleLength}
                     animatedProps={animatedProps}

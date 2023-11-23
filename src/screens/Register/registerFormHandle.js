@@ -23,23 +23,3 @@ export const formSchema = yup.object({
     .required()
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 })
-
-export const FormSubmit = async (values, actions) => {
-    setLoading(true)
-    let userData = {
-        name : values.name,
-        phone : values.phoneNumber,
-        email : values.email,
-        password : values.password,
-        password_confirmation : values.passwordConfirmation,
-    }
-    console.log(userData);
-    try {
-
-        await authService.createUser(userData);
-        navigateToLogIn();
-    } catch (error) {
-        console.error('Error creating user:', error);
-        Alert.alert('Error', 'Failed to create user. Please try again.');
-    }
-    };

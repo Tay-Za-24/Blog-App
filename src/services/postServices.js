@@ -7,4 +7,9 @@ export default class postService {
         setConfig(); 
         return axios.get(apiUrl + 'blog-posts/all')
     }
+
+    static createPost = (accessToken, postData) => {
+        setConfig(accessToken);
+        return axios.post(apiUrl + 'blog-posts', postData);
+      };
 }

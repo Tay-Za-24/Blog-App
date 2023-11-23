@@ -1,16 +1,17 @@
-import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView, ActivityIndicator } from 'react-native'
 import React, { useEffect } from 'react';
 import styles from './register.style'
 import { Formik } from 'formik';
 import { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { formSchema, FormSubmit } from './registerFormHandle';
+import { formSchema } from './registerFormHandle';
 import Animated, {
     Easing,
     FadeInUp,
     BounceInDown,
     BounceInUp
   } from 'react-native-reanimated';
+import authService from '../../services/authServices';
 
 const Register = ({navigation}) => {
     const [loading, setLoading] = useState(false);
@@ -21,20 +22,30 @@ const Register = ({navigation}) => {
         navigation.navigate('Login');
     }
 
-    const bounceAnimation = () => {
-        Animated.spring(translateY, {
-          toValue: -50,
-          velocity: 10,
-          friction: 7,
-          tension: 40,
-        }).start();
-    };
+    const FormSubmit = async (values, actions) => {
+        setLoading(true)
+        let userData = {
+            name : values.name,
+            phone : values.phoneNumber,
+            email : values.email,
+            password : values.password,
+            password_confirmation : values.passwordConfirmation,
+        }
+        console.log(userData);
+        try {
     
+            await authService.createUser(userData);
+            navigateToLogIn();
+        } catch (error) {
+            console.error('Error creating user:', error);
+            Alert.alert('Error', 'Failed to create user. Please try again.');
+        }
+        };
 
   return (
     <View style={styles.mainContainer}>
         <ScrollView showsVerticalScrollIndicator={false}>
-            <Animated.Text style={styles.intro}>Register Here 🤍</Animated.Text>
+            <Text style={styles.intro}>Register Here 🤍</Text>
                 <Formik
                     initialValues={
                         {name : '', 
