@@ -5,7 +5,7 @@ import { setConfig } from '../util/helper';
 export default class postService {
     static getAllPosts = () => {
         setConfig(); 
-        return axios.get(apiUrl + 'blog-posts/all')
+        return axios.get('blog-posts/all')
     }
 
     static createPost = (accessToken, postData) => {

@@ -5,6 +5,7 @@ import styles from '../screens/Home/home.style';
 import moment from 'moment';
 import { getRandomSampleImage } from '../util/helper';
 import LoadingAnimation from '../animations/loadingAnimations';
+import ClockAnimation from '../animations/clockAnimation';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 const PostList = ({ navigation, searchText }) => {

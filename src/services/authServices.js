@@ -13,6 +13,11 @@ export default class authService {
         setConfig(); 
         return axios.post(apiUrl + 'auth/login', { email, password });
     }
+
+    static logOutUser = (accessToken) => {
+        setConfig(accessToken)
+        return axios.post('auth/logout')
+    }
     
     static checkUserTokenValid = (token) => {
         setConfig(token); 
@@ -23,4 +28,5 @@ export default class authService {
         setConfig(accessToken);
         return axios.get(apiUrl + 'auth/me')
     }
+    
 }

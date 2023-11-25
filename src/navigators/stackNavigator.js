@@ -8,6 +8,7 @@ import { AuthContext } from "../hooks/context/context";
 import { config, closeConfig } from '../component/transition';
 import CreatePost from "../screens/Create Post/createPost";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 
@@ -15,10 +16,38 @@ const DrawerNavigator = createDrawerNavigator()
 
 const DrawerScreens = () => (
   <DrawerNavigator.Navigator
-    screenOptions={{ drawerPosition:'right',headerShown:false}}
+    screenOptions={
+      { drawerPosition:'right',
+      headerShown:false,
+      drawerStyle : {
+        backgroundColor : "#faedcd",
+        width : "60%"
+      },
+      drawerActiveBackgroundColor : "#d4a373",
+      drawerLabelStyle : {
+        color : "#283618",
+      },
+      drawerItemStyle : {
+        borderRadius : 25,
+        paddingLeft : "15%"
+      }
+    }}
   >
-    <DrawerNavigator.Screen name="Home" component={InsideStack} />
-    <DrawerNavigator.Screen name="Create Post" component={CreatePost} />
+    <DrawerNavigator.Screen 
+      options={{drawerIcon : () => (
+        <Ionicons name={"home"} size = {20}/>
+      )}}
+      name="Home" 
+      component={InsideStack} 
+    />
+
+    <DrawerNavigator.Screen 
+      options={{drawerIcon : () => (
+        <Ionicons name={"brush"} size = {20}/>
+      )}}
+      name="Create Post" 
+      component={CreatePost} 
+    />
   </DrawerNavigator.Navigator>
 );
 

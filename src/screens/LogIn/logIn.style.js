@@ -39,6 +39,16 @@ const styles = StyleSheet.create({
         marginTop : '3%'
     },
 
+    // logInBtn: {
+    //     alignItems: 'center',
+    //     width: '100%',
+    //     paddingTop: '4%',
+    //     paddingBottom: '4%',
+    //     borderRadius: 10,
+    //     marginBottom: '5%',
+    //     marginTop: '3%',
+    //   },
+
     logInBtnTxt : {
         color : 'white',
         fontSize : 20,

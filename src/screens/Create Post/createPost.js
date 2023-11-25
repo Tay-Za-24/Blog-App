@@ -9,9 +9,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Modal } from 'react-native';
 import LoadingAnimation from '../../animations/loadingAnimations';
 import { formSchema } from './formhandler';
+import InfoBox from '../../component/infoBox';
 
 const CreatePost = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [userInfoVisible, setUserInfoVisible] = useState(false)
   const [loading, setLoading] = useState(false);
 
   const navigateToHome = () => {
@@ -51,12 +53,9 @@ const CreatePost = ({ navigation }) => {
     <View style={styles.mainContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ flexDirection: 'row', marginBottom: '10%', marginTop: "15%", }}>
-          <TouchableOpacity onPress={toggleDrawer}>
-            <Ionicons name='menu-outline' size={35} />
-          </TouchableOpacity>
           <Text style={styles.header}>Create Blog Post</Text>
-          <TouchableOpacity style={styles.profile}>
-            <Ionicons name='person-circle-outline' size={35} />
+          <TouchableOpacity onPress={toggleDrawer} style={styles.profile}>
+            <Ionicons name='menu-outline' size={35} />
           </TouchableOpacity>
         </View>
         <Formik
@@ -117,10 +116,7 @@ const CreatePost = ({ navigation }) => {
                 ) : (
                   <View style={styles.innerBox}>
                     <Text style={{ fontSize: 20, color: "green" }}>Your post has been posted! </Text>
-                    <TouchableOpacity style={styles.btn} onPress={() => {
-                      setModalVisible(false);
-                      navigateToHome();
-                    }}>
+                    <TouchableOpacity style={styles.btn} onPress={ closeModalAndNavigate}>
                       <Text style={{ color: 'white', textAlign : 'center' }}>To Home</Text>
                     </TouchableOpacity> 
                   </View>
@@ -128,6 +124,7 @@ const CreatePost = ({ navigation }) => {
               </View>
           </View>
         </Modal>
+
     </View>
   );
 };

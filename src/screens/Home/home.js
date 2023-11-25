@@ -7,6 +7,7 @@ import PostList from '../../component/postList';
 import authService from '../../services/authServices';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
+import InfoBox from '../../component/infoBox';
 
 
 const Home = ({navigation}) => {
@@ -43,6 +44,17 @@ const Home = ({navigation}) => {
     const createdDate = moment(timestamp);
     return createdDate.format('MMMM D, HH:mm:ss');
   };
+
+  const logUserOut = async () => {
+    try{
+      const userInfo = await AsyncStorage.getItem('userInfo').then((res) => JSON.parse(res));
+      await (authService.logOutUser(userInfo.access_token))
+      navigateToLogIn()
+    }catch(error) {
+      console.log("error : " + error);
+      Alert.alert('Error', 'Failed to log out');
+    }
+  }
 
   const getUser = async () => {
     try {
@@ -103,34 +115,11 @@ const Home = ({navigation}) => {
 
         <Modal visible={isModalVisible} transparent>
         <View style={styles.userInfo}>
-          <View style={styles.infoBox}>
-            {userData && (
-              <>
-                <View>
-                <Ionicons name='person-circle-outline' size={45} style={{marginBottom : "5%"}}/>
-                <Text style={styles.modalTxt}>Name : {userData.name}</Text>
-                </View>
-                <View style={{flexDirection : 'row'}}>
-                  <Text style={styles.modalTxt}>Email : {userData.email}</Text>
-                  {userData.email_verified_at ? (
-                    <Text style={styles.emailCheck}>( Verified )</Text>
-                      ) : (
-                    <Text style={styles. emailNotVerified}>( Not Verified )</Text>
-                  )}
-                </View>
-                <Text style={styles.modalTxt}>Phone Number : {userData.phone}</Text>
-                <Text style={{fontSize : 16}}>Account created at {formatCreatedAt(userData.created_at)}</Text>
-              </>
-            )}
-            <View style={styles.btnContain}>
-              <TouchableOpacity style={styles.logOutBtn} onPress={navigateToLogIn}>
-                <Text style={{color : 'white'}}>Log Out</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.btnNothing} onPress={() => setModalVisible(false)}>
-                <Text style={{color : 'white'}}>OK</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <InfoBox
+              userData={userData}
+              navigateToLogIn={navigateToLogIn}
+              closeModal={() => setModalVisible(false)}
+          />
         </View>
       </Modal>
       </View>

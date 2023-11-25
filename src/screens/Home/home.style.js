@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
 
     infoBox : {
         backgroundColor : "white",
-        padding : 10,
+        padding : 15,
         borderRadius : 20
     },
 
@@ -125,10 +125,10 @@ const styles = StyleSheet.create({
         padding : 10,
         paddingLeft : 15,
         paddingRight : 15,
-        borderRadius : 20
+        borderRadius : 20,
     }, 
     btnNothing : {
-        backgroundColor : 'black',
+        backgroundColor : 'grey',
         padding : 10,
         paddingLeft : 15,
         paddingRight : 15,
@@ -137,6 +137,13 @@ const styles = StyleSheet.create({
         width : "30%",
         alignItems : "center"
     },
+
+    name : {
+        marginTop : '3%',
+        marginLeft : "5%",
+        fontSize : 20,
+        fontWeight : 'bold'
+    },  
 
     modalTxt : {
         marginBottom : "3%",

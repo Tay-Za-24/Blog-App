@@ -18,8 +18,7 @@ const styles = StyleSheet.create({
     header : {
         fontSize : 20,
         fontWeight : "500",
-        marginLeft : "16%",
-        marginTop : "1%"
+        marginTop : "2%"
     },
 
     titleInput : {
