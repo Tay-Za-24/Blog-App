@@ -6,6 +6,12 @@ import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { setConfig } from './src/util/helper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { store } from './src/store';
+import { Provider } from 'react-redux';
+import { injectStore } from './src/services/defaultAxiosConfig';
+
+injectStore(store)
+
 
 export default function App() {
   const authState = useCheckUser();
@@ -30,12 +36,14 @@ export default function App() {
   if (!isUserReady) return;
 
   return (
-    <AuthProvider authState={authState}>
-       <StatusBar
-        translucent={true}
-      />
-      <Navigation />
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider authState={authState}>
+        <StatusBar
+          translucent={true}
+        />
+        <Navigation authState={authState} />
+      </AuthProvider>
+    </Provider>
   );
 }
 

@@ -29,7 +29,6 @@ const DrawerScreens = () => (
       },
       drawerItemStyle : {
         borderRadius : 25,
-        paddingLeft : "15%"
       }
     }}
   >

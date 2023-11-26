@@ -12,15 +12,6 @@ export const getRandomSampleImage = (item) => {
     return sampleImages[randomIndex];
 }
 
-export const defaultApiConfig = (token = "") => {
-  return {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token,
-    },
-  };
-};
 
 export const setConfig = (token) => {
   axios.defaults.baseURL = 'https://ojt-api.bib-apps.com/api/';

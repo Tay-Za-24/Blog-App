@@ -21,6 +21,15 @@ const styles = StyleSheet.create({
         marginTop : "2%"
     },
 
+    addImageBtn : {
+        flexDirection : 'row',
+        backgroundColor : "#81b29a",
+        padding : 15,
+        borderRadius : 15,
+        alignItems : "center",
+        marginBottom : "7%"
+    },  
+
     titleInput : {
         marginTop : "2%",
         height : 'auto',

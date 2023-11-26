@@ -5,12 +5,15 @@ import styles from '../screens/Home/home.style';
 import moment from 'moment';
 import { getRandomSampleImage } from '../util/helper';
 import LoadingAnimation from '../animations/loadingAnimations';
-import ClockAnimation from '../animations/clockAnimation';
 import Animated, { FadeIn } from 'react-native-reanimated';
 
 const PostList = ({ navigation, searchText }) => {
   const [postList, setPostList] = useState([]);
   const [loadingComplete, setLoadingComplete] = useState(false);
+  
+  useEffect(() => {
+    filterPosts();
+  }, [searchText]);
 
   const truncateText = (text, maxLength) => {
     if (text.length <= maxLength) {
@@ -44,9 +47,7 @@ const PostList = ({ navigation, searchText }) => {
       postService
         .getAllPosts()
         .then((response) => {
-          const sortedPosts = response.data.sort(
-            (a, b) => new Date(b.created_at) - new Date(a.created_at)
-          );
+          const sortedPosts = response.data.reverse()
   
           setPostList(sortedPosts);
           setLoadingComplete(true); 
@@ -57,9 +58,6 @@ const PostList = ({ navigation, searchText }) => {
     }, 2000);
   };
 
-  useEffect(() => {
-    filterPosts();
-  }, [searchText]);
 
   const formatCreatedAt = (timestamp) => {
     const createdDate = moment(timestamp);

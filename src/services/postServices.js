@@ -1,15 +1,16 @@
-import axios from 'axios';
-import { apiUrl } from '../util/constant/constant';
-import { setConfig } from '../util/helper';
+import  axios from './defaultAxiosConfig';
 
 export default class postService {
     static getAllPosts = () => {
-        setConfig(); 
         return axios.get('blog-posts/all')
     }
 
     static createPost = (accessToken, postData) => {
-        setConfig(accessToken);
-        return axios.post(apiUrl + 'blog-posts', postData);
+        const config = {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        };
+        return axios.post('blog-posts', postData, config);
       };
 }

@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     infoBox : {
         backgroundColor : "white",
         padding : 15,
-        borderRadius : 20
+        borderRadius : 20,
     },
 
     btnContain : {

@@ -3,18 +3,17 @@ import React, { useState } from 'react'
 import styles from './createPost.style'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Formik } from 'formik';
-import Animated, { BounceInDown } from 'react-native-reanimated';
+import Animated, { BounceInDown, Easing, FadeIn } from 'react-native-reanimated';
 import postService from "../../services/postServices";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Modal } from 'react-native';
-import LoadingAnimation from '../../animations/loadingAnimations';
 import { formSchema } from './formhandler';
-import InfoBox from '../../component/infoBox';
+import ProgressBar from '../../animations/progressBar';
 
 const CreatePost = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [userInfoVisible, setUserInfoVisible] = useState(false)
   const [loading, setLoading] = useState(false);
+  const [selectImage, setSelectImage] = useState('')
 
   const navigateToHome = () => {
     navigation.navigate('Home');
@@ -29,12 +28,13 @@ const CreatePost = ({ navigation }) => {
       title: values.title,
       body: values.body,
     };
-
+  
     try {
       setLoading(true);
       setModalVisible(true);
-      const userInfo = await AsyncStorage.getItem('userInfo').then((res) => JSON.parse(res));
       await new Promise(resolve => setTimeout(resolve, 2000));
+  
+      const userInfo = await AsyncStorage.getItem('userInfo').then((res) => JSON.parse(res));
       await postService.createPost(userInfo.access_token, postData);
       setLoading(false);
     } catch (error) {
@@ -62,7 +62,7 @@ const CreatePost = ({ navigation }) => {
           initialValues={
             {
               title: "",
-              body: ""
+              body: "",
             }
           }
           onSubmit={(values, actions) => { FormSubmit(values, actions) }}
@@ -71,6 +71,13 @@ const CreatePost = ({ navigation }) => {
         >
           {(formikprops) => (
             <View>
+              <Animated.View >
+                  <TouchableOpacity style={styles.addImageBtn}>
+                    <Ionicons name={'image-outline'} size={30}/>
+                    <Text style ={{marginLeft : "5%", fontSize : 15}}>Add an image to your post</Text>
+                  </TouchableOpacity>
+              </Animated.View>
+
               <Animated.View>
                 <Text>Your Post Title</Text>
                 <TextInput
@@ -112,14 +119,14 @@ const CreatePost = ({ navigation }) => {
           <View style={styles.modal}>
               <View style={styles.box}>
                 { loading ? (
-                  <LoadingAnimation />
+                  <ProgressBar />
                 ) : (
-                  <View style={styles.innerBox}>
+                  <Animated.View style={styles.innerBox} entering={FadeIn.easing(Easing.ease)}>
                     <Text style={{ fontSize: 20, color: "green" }}>Your post has been posted! </Text>
                     <TouchableOpacity style={styles.btn} onPress={ closeModalAndNavigate}>
                       <Text style={{ color: 'white', textAlign : 'center' }}>To Home</Text>
                     </TouchableOpacity> 
-                  </View>
+                  </Animated.View>
                 )}
               </View>
           </View>
