@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         paddingBottom : '4%',
         borderRadius : 10,
         marginBottom : "5%",
+        elevation : 5
     },
     registerBtnTxt : {
         color : 'white',

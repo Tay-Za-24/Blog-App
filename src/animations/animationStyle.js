@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom : "32%",
         right : "9%",
-        zIndex : 99,
     },
     textInsideCircle: {
         position: 'relative',

@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
         paddingLeft : "8%",
         paddingRight : "8%",
         justifyContent: 'center',
-        backgroundColor : "#f5ebe0"
+        backgroundColor : "#f5ebe0",
+        height : "100%"
     },
 
     profile : {

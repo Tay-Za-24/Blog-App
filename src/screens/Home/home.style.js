@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
         paddingLeft : "8%",
         paddingRight : "8%",
         justifyContent: 'center',
+        backgroundColor : "#edede9"
     },
 
     menu : {
@@ -65,8 +66,9 @@ const styles = StyleSheet.create({
         height : 150,
         marginBottom : '8%',
         flexDirection : 'row',
-        backgroundColor: "#edede9",
-        borderRadius : 20
+        backgroundColor: "#eae0d5",
+        borderRadius : 20,
+        elevation : 5
     },
 
     image : {
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
         paddingLeft : 15,
         paddingRight : 15,
         borderRadius : 20,
+        elevation: 10,
     }, 
     btnNothing : {
         backgroundColor : 'grey',
@@ -135,7 +138,8 @@ const styles = StyleSheet.create({
         borderRadius : 20,
         marginLeft : "10%",
         width : "30%",
-        alignItems : "center"
+        alignItems : "center",
+        elevation: 10,
     },
 
     name : {

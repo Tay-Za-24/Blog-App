@@ -28,12 +28,6 @@ const ProgressBar = () => {
 
   return (
     <View>
-      <View style={{ flexDirection: 'row' }}>
-        <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Posting </Text>
-        <Animated.View style={[styles.dot, dotStyle]}></Animated.View>
-        <Animated.View style={[styles.dot, dotStyle]}></Animated.View>
-        <Animated.View style={[styles.dot, dotStyle]}></Animated.View>
-      </View>
       <View style={styles.progressBarContainer}>
         <Animated.View style={[styles.progressBar, progressBarStyle]} />
       </View>

@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styles from './createPost.style'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Formik } from 'formik';
-import Animated, { BounceInDown, Easing, FadeIn } from 'react-native-reanimated';
+import Animated, { BounceInDown, Easing, FadeIn, withTiming, useSharedValue, useAnimatedStyle, withRepeat, withSequence } from 'react-native-reanimated';
 import postService from "../../services/postServices";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Modal } from 'react-native';
@@ -13,7 +13,23 @@ import ProgressBar from '../../animations/progressBar';
 const CreatePost = ({ navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [selectImage, setSelectImage] = useState('')
+  const opacity = useSharedValue(0);
+
+  const startAnimation = () => {
+    opacity.value = withRepeat(
+      withSequence(
+        withTiming(1, { duration: 800, easing: Easing.inOut(Easing.ease) }),
+        withTiming(0.5, { duration: 800, easing: Easing.inOut(Easing.ease) })
+      ),
+      -1 
+    );
+  };
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+    };
+  });
 
   const navigateToHome = () => {
     navigation.navigate('Home');
@@ -71,13 +87,6 @@ const CreatePost = ({ navigation }) => {
         >
           {(formikprops) => (
             <View>
-              <Animated.View >
-                  <TouchableOpacity style={styles.addImageBtn}>
-                    <Ionicons name={'image-outline'} size={30}/>
-                    <Text style ={{marginLeft : "5%", fontSize : 15}}>Add an image to your post</Text>
-                  </TouchableOpacity>
-              </Animated.View>
-
               <Animated.View>
                 <Text>Your Post Title</Text>
                 <TextInput
@@ -103,6 +112,7 @@ const CreatePost = ({ navigation }) => {
 
               <Animated.View entering={BounceInDown}>
                 <TouchableOpacity style={styles.createBtn} onPress={() => {
+                  startAnimation();
                   setLoading(true);
                   formikprops.handleSubmit();
                 }}>
@@ -119,7 +129,13 @@ const CreatePost = ({ navigation }) => {
           <View style={styles.modal}>
               <View style={styles.box}>
                 { loading ? (
-                  <ProgressBar />
+                  <> 
+                    <View>
+                      <Animated.Text style={[animatedStyle, {fontSize : 16, fontWeight : 'bold'}]}>Posting</Animated.Text>
+                      <Animated.View></Animated.View>
+                    </View>
+                    <ProgressBar />
+                  </>
                 ) : (
                   <Animated.View style={styles.innerBox} entering={FadeIn.easing(Easing.ease)}>
                     <Text style={{ fontSize: 20, color: "green" }}>Your post has been posted! </Text>

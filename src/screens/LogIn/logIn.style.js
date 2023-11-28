@@ -36,18 +36,9 @@ const styles = StyleSheet.create({
         paddingBottom : '4%',
         borderRadius : 10,
         marginBottom : "5%",
-        marginTop : '3%'
+        marginTop : '3%',
+        elevation : 5
     },
-
-    // logInBtn: {
-    //     alignItems: 'center',
-    //     width: '100%',
-    //     paddingTop: '4%',
-    //     paddingBottom: '4%',
-    //     borderRadius: 10,
-    //     marginBottom: '5%',
-    //     marginTop: '3%',
-    //   },
 
     logInBtnTxt : {
         color : 'white',

@@ -20,10 +20,10 @@ const DrawerScreens = () => (
       { drawerPosition:'right',
       headerShown:false,
       drawerStyle : {
-        backgroundColor : "#faedcd",
+        backgroundColor : "#f5ebe0",
         width : "60%"
       },
-      drawerActiveBackgroundColor : "#d4a373",
+      drawerActiveBackgroundColor : "#d5bdaf",
       drawerLabelStyle : {
         color : "#283618",
       },
@@ -34,7 +34,7 @@ const DrawerScreens = () => (
   >
     <DrawerNavigator.Screen 
       options={{drawerIcon : () => (
-        <Ionicons name={"home"} size = {20}/>
+        <Ionicons name={"library-outline"} size = {20}/>
       )}}
       name="Home" 
       component={InsideStack} 
@@ -42,7 +42,7 @@ const DrawerScreens = () => (
 
     <DrawerNavigator.Screen 
       options={{drawerIcon : () => (
-        <Ionicons name={"brush"} size = {20}/>
+        <Ionicons name={"pencil-outline"} size = {20}/>
       )}}
       name="Create Post" 
       component={CreatePost} 
