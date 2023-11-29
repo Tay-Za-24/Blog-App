@@ -8,11 +8,11 @@ import authService from '../../services/authServices';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 import InfoBox from '../../component/infoBox';
+import { useDispatch } from 'react-redux';
 
 
 const Home = ({navigation}) => {
   const [text, setText] = useState('');
-  const [activeTab, setActiveTab] = useState('Latest');
   const [isModalVisible, setModalVisible] = useState(false);
   const [userData, setUserData] = useState(null)
 
@@ -35,10 +35,6 @@ const Home = ({navigation}) => {
   const handleClearSeach = () => {
     setText('')
   }
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
 
   const formatCreatedAt = (timestamp) => {
     const createdDate = moment(timestamp);
@@ -90,24 +86,6 @@ const Home = ({navigation}) => {
               <Ionicons name='close-outline' size={30} onPress={handleClearSeach} />
             </TouchableOpacity>
           )}
-        </View>
-
-        <View style={styles.tabBar}>
-        <TouchableOpacity onPress={() => handleTabClick('Latest')}>
-            <Text style={[styles.tab, activeTab === 'Latest' && styles.activeTab]}>
-              Latest
-            </Text>
-          </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleTabClick('Featured')}>
-            <Text style={[styles.tab, activeTab === 'Featured' && styles.activeTab]}>
-              Featured
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleTabClick('Trending')}>
-            <Text style={[styles.tab, activeTab === 'Trending' && styles.activeTab]}>
-              Trending
-            </Text>
-          </TouchableOpacity>
         </View>
 
         <PostList navigation={navigation} searchText={text}/> 

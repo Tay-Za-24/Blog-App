@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { setConfig } from './src/util/helper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { store } from './src/store';
 import { Provider } from 'react-redux';
 import { injectStore } from './src/services/defaultAxiosConfig';
@@ -38,10 +39,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <AuthProvider authState={authState}>
-        <StatusBar
-          translucent={true}
-        />
-        <Navigation authState={authState} />
+        <SafeAreaProvider>
+          <StatusBar translucent={true} />
+          <Navigation authState={authState} />
+        </SafeAreaProvider>
       </AuthProvider>
     </Provider>
   );

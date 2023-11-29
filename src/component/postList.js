@@ -6,11 +6,15 @@ import moment from 'moment';
 import { getRandomSampleImage } from '../util/helper';
 import LoadingAnimation from '../animations/loadingAnimations';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPosts, getPostList, reversePost } from '../store/postSlice';
 
 const PostList = ({ navigation, searchText }) => {
-  const [postList, setPostList] = useState([]);
+  const [activeTab, setActiveTab] = useState('Featured');
+  const postList = useSelector(getAllPosts)
   const [loadingComplete, setLoadingComplete] = useState(false);
-  
+  const dispatch = useDispatch();
+
   useEffect(() => {
     filterPosts();
   }, [searchText]);
@@ -34,34 +38,38 @@ const PostList = ({ navigation, searchText }) => {
         const searchTextLower = searchText.toLowerCase();
         return postTitle.includes(searchTextLower);
       });
-      setPostList(filteredPosts);
     } else {
       fetchPosts();
     }
   };
 
+
   const fetchPosts = () => {
     setLoadingComplete(false);
-
-    setTimeout(() => {
-      postService
-        .getAllPosts()
-        .then((response) => {
-          const sortedPosts = response.data.reverse()
   
-          setPostList(sortedPosts);
-          setLoadingComplete(true); 
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 2000);
+    setTimeout(() => {
+      dispatch(getPostList()).unwrap().then(() => {
+        setLoadingComplete(true);
+      });
+    }, 1500);
   };
 
 
   const formatCreatedAt = (timestamp) => {
     const createdDate = moment(timestamp);
     return createdDate.format('MMM D');
+  };
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+  };
+
+  const handleTabAndReverse = (tab) => {
+    if (activeTab !== tab) {
+      dispatch(reversePost(postList));
+    }
+  
+    setActiveTab(tab);
   };
 
   const calculateReadingTime = (text) => {
@@ -79,49 +87,68 @@ const PostList = ({ navigation, searchText }) => {
   );
 
   return (
-    <View style={{ height: '68%', paddingBottom: '10%' }}>
-      {loadingComplete ? (
-        <Animated.FlatList
-          entering={FadeIn}
-          showsVerticalScrollIndicator={false}
-          ListEmptyComponent={renderEmptyComponent}
-          data={postList}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigateToBlog(item)}>
-              <View style={styles.post}>
-                <View>
-                  {item.image ? (
-                    <Image style={styles.image} source={{ uri: item.image }} />
-                  ) : (
-                    <Image
-                      style={styles.image}
-                      source={getRandomSampleImage(item)}
-                    />
-                  )}
-                </View>
-                <View style={styles.desc}>
-                  <Text style={styles.postTtl}>
-                    {truncateText(item.title, 20)}
-                  </Text>
-                  <Text style={styles.postBody}>{item.body}</Text>
-                  <View style={{ flexDirection: 'row', marginTop : "5%" }}>
-                    <Text style={styles.postDate}>
-                      {formatCreatedAt(item.created_at)}
+    <>
+      <View style={styles.tabBar}>
+        <TouchableOpacity onPress={() => handleTabAndReverse('Featured')}>
+          <Text style={[styles.tab, activeTab === 'Featured' && styles.activeTab]}>
+            Featured
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleTabAndReverse('Latest')}>
+          <Text style={[styles.tab, activeTab === 'Latest' && styles.activeTab]}>
+            Latest
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleTabClick('Trending')}>
+          <Text style={[styles.tab, activeTab === 'Trending' && styles.activeTab]}>
+            Trending
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ height: '68%', paddingBottom: '10%' }}>
+        {loadingComplete ? (
+          <Animated.FlatList
+            entering={FadeIn}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={renderEmptyComponent}
+            data={postList}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => navigateToBlog(item)}>
+                <View style={styles.post}>
+                  <View>
+                    {item.image ? (
+                      <Image style={styles.image} source={{ uri: item.image }} />
+                    ) : (
+                      <Image
+                        style={styles.image}
+                        source={getRandomSampleImage(item)}
+                      />
+                    )}
+                  </View>
+                  <View style={styles.desc}>
+                    <Text style={styles.postTtl}>
+                      {truncateText(item.title, 20)}
                     </Text>
-                    <Text style={styles.readTime}>
-                      {calculateReadingTime(item.body)} minute
-                    </Text>
+                    <Text style={styles.postBody}>{item.body}</Text>
+                    <View style={{ flexDirection: 'row', marginTop : "5%" }}>
+                      <Text style={styles.postDate}>
+                        {formatCreatedAt(item.created_at)}
+                      </Text>
+                      <Text style={styles.readTime}>
+                        {calculateReadingTime(item.body)} minute
+                      </Text>
+                    </View>
                   </View>
                 </View>
-              </View>
-            </TouchableOpacity>
-          )}
-        />
-      ) : (
-        <LoadingAnimation />
-      )}
-    </View>
+              </TouchableOpacity>
+            )}
+          />
+        ) : (
+          <LoadingAnimation />
+        )}
+      </View>
+    </>
   );
 };
 
