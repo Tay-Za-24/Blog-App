@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import moment from 'moment';
@@ -11,6 +11,10 @@ const InfoBox = ({ userData, navigateToLogIn, closeModal }) => {
     const createdDate = moment(timestamp);
     return createdDate.format('MMMM D, HH:mm:ss');
   };
+
+  useEffect(() => {
+    console.log("inside info box" + userData);
+  })
 
   return (
     <Animated.View style={styles.infoBox} entering={FadeIn.easing(Easing.ease)}>

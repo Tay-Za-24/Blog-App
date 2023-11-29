@@ -8,12 +8,16 @@ import authService from '../../services/authServices';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 import InfoBox from '../../component/infoBox';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo, getUserData } from '../../store/infoSlice';
 
 
 const Home = ({navigation}) => {
   const [text, setText] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
-  const [userData, setUserData] = useState(null)
+  // const [userData, setUserData] = useState(null)
+  const userData = useSelector(getUserInfo)
+  const dispatch = useDispatch()
 
   useEffect(() =>{
     getUser();
@@ -52,14 +56,8 @@ const Home = ({navigation}) => {
   }
 
   const getUser = async () => {
-    try {
-      const userInfo = await AsyncStorage.getItem('userInfo').then((res) => JSON.parse(res));
-      const response = await authService.getUserInfo(userInfo.access_token);
-      setUserData(response.data);
-    }catch( error ){
-      console.error("Error Getting User infromation" , error)
-      Alert.alert('Error', 'Failed to fetch user infromations');
-    }
+    const userInfo = await AsyncStorage.getItem('userInfo').then((res) => JSON.parse(res));
+    dispatch(getUserData(userInfo.access_token))
   }
 
   return (
