@@ -8,7 +8,6 @@ import authService from '../../services/authServices';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 import InfoBox from '../../component/infoBox';
-import { useDispatch } from 'react-redux';
 
 
 const Home = ({navigation}) => {

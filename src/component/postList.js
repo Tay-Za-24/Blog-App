@@ -7,7 +7,7 @@ import { getRandomSampleImage } from '../util/helper';
 import LoadingAnimation from '../animations/loadingAnimations';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPosts, getPostList, reversePost } from '../store/postSlice';
+import { getAllPosts, getPostList, reversePost, setFilter } from '../store/postSlice';
 
 const PostList = ({ navigation, searchText }) => {
   const [activeTab, setActiveTab] = useState('Featured');
@@ -33,12 +33,9 @@ const PostList = ({ navigation, searchText }) => {
 
   const filterPosts = () => {
     if (searchText) {
-      const filteredPosts = postList.filter((post) => {
-        const postTitle = post.title.toLowerCase();
-        const searchTextLower = searchText.toLowerCase();
-        return postTitle.includes(searchTextLower);
-      });
+      dispatch(setFilter(searchText));
     } else {
+      dispatch(setFilter(''));
       fetchPosts();
     }
   };

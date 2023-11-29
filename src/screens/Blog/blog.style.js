@@ -25,6 +25,14 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top : "7%"
     },  
+
+    commentBox : {
+        width : "100%",
+        justifyContent : "center",
+        alignItems : "center",
+        padding : 10,
+        backgroundColor : 'grey'
+    }
     
 })
 

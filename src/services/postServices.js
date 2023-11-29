@@ -12,5 +12,13 @@ export default class postService {
             },
         };
         return axios.post('blog-posts', postData, config);
-      };
+    };
+    static getComments = (accessToken, postID) => {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+    }
+    return axios.get(`blog-posts/${postID}/comments`, config)
+}
 }
