@@ -20,6 +20,7 @@ const initialState = {
         }
       );
     }
+
   });
 
 export const getUserInfo = (state) => state.userData.data

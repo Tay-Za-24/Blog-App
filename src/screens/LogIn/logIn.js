@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { formSchema } from './logInFormhandle';
-import Animated, {BounceInUp, Easing, SlideInLeft, LightSpeedInLeft } from 'react-native-reanimated';
+import Animated, {BounceInUp, Easing, LightSpeedInLeft } from 'react-native-reanimated';
 
 const LogIn = ({navigation}) => {
   const [loading, setLoading] = useState(false);

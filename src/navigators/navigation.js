@@ -11,6 +11,7 @@ export default function Navigation({authState}) {
 
     useEffect(() => {
        dispatch(addUser(authState.user))
+    //    console.log(authState.user);
     }, [])
     
 

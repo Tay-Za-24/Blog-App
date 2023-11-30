@@ -31,7 +31,6 @@ const Register = ({navigation}) => {
             password : values.password,
             password_confirmation : values.passwordConfirmation,
         }
-        console.log(userData);
         try {
     
             await authService.createUser(userData);
